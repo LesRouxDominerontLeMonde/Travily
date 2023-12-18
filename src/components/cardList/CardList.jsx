@@ -16,19 +16,25 @@ const getData = async (page) => {
     return res.json();
 };
 
-
 const CardList = async({page}) => {
+    const { posts, count } = await getData(page);
 
-    const data = await getData(page);
+    //need to change also in the API/posts if changed
+    const POST_PER_PAGE = 2;
+
+    const hasPrev = POST_PER_PAGE * (page-1) > 0
+    const hasNext = POST_PER_PAGE * (page-1) + POST_PER_PAGE < count;
+
+
     return (
         <div className={styles.container}>
             <h3 className={styles.title}>Recent Posts</h3>
             <div className={styles.posts}>
-                {data?.map((item) => (
+                {posts?.map((item) => (
                     <Post item={item} key={item._id}/>
                 ))}
             </div>
-            <Pagination/>
+            <Pagination page={page} hasPrev={hasPrev} hasNext={hasNext} />
         </div>
     )
 }
