@@ -42,6 +42,7 @@
     border: none;
     outline: none;
     background: transparent;
+    color: var(--textColor);
 }
 
 .input:placeholder {
