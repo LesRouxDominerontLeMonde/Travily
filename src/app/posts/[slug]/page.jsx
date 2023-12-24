@@ -13,7 +13,7 @@ const getData = async (slug) => {
 
     if(!res.ok) {
         throw new Error("Failed")
-    }
+    } 
 
     return res.json();
 };
